@@ -1,0 +1,58 @@
+Flow of combat:
+
+____ is attacking!
+
+Attack Magic Taunt?(Some third Option) Run (which just ends the game)
+
+IF they pick the frist, show text from a list describing the attack 
+and deal damage to the enemy.
+
+or
+
+If they pick the second option, display magicks
+User uses magic, which can damage the enemy or heal the user
+
+enemy then attacks/uses magic
+
+reprint current health and combat options
+
+if health <= 0 
+    go to continue screen. if continue, restart fight with full stats. else, end game
+
+if enemy health <= 0,
+    death quote plays, maybe some inbetween text, then intro of next enemy plays
+
+Lucas = Enemy(5, 5, 1  <---- bad idea; cant use ai that way
+
+
+
+How's the engine work?
+
+Print "%s is attacking!" %Enemy.name
+Print "What will you do?"
+Print "[A]ttack [M]agic M[y]stery [R]un"
+action = raw_input("> ")
+if action == "a" or "A" or "attack" or "Attack":
+    Hero.attack(Enemy)   
+
+
+luke_stats = {'name': 'Lucas', 'hp': 40, 'mp': 5, 'atkstr': 1, 'intro_quote': 'Wubalubadubdub!', 'outro_quote': 'My leg!'}
+luke_quotes = ['Lucas complains at you until your ears bleed!','Lucas beaches you to death!']
+Lucas = Character(luke_stats, luke_quotes)
+
+
+Class Character(object)
+
+    def __init__(self, stats, battle_quotes):
+        self.lvl = 1
+        self.name = stats['name']
+        self.hp = stats['hp']
+        self.mp = stats['mp']
+        self.atkstr = stats['atkstr']
+        self.quips = battle_quotes
+
+    def attack(self, opponent):
+        print self.quips[randint(0, len(self.quips) - 1)]
+        opponent.hp -= self.atkstr
+
+need to flesh out magic more
